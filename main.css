@@ -1,0 +1,14 @@
+.square {
+    visibility: hidden;
+    width: 80px;
+    height: 80px;
+    background-color: blueviolet;
+    border: 3px solid black;
+}
+#grid {
+    display: grid;
+    grid-template-columns: 83px 83px 83px 83px 83px;
+    grid-template-rows: 83px 83px 83px 83px 83px;
+    border: 3px solid black;
+    width: fit-content;
+}
