@@ -1,6 +1,35 @@
 const board = (function() {
     let flag = false;
     let turn = "x";
+    document.getElementById("restart");
+    restart.addEventListener("click", () => {
+        wondiv = document.getElementById("wondiv")
+                
+                flag = false;
+                turn = "x";
+                placed = [
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false]];
+                piece = [
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0]];
+                
+                for (let i = 0; i < 5; i++) {
+                    for (let j =0; j < 5; j++) {
+                        let spot = document.getElementById(i.toString() + j.toString());
+                        spot.textContent = "";
+                    }
+                }
+                wondiv.style.display = "none";
+                show();
+            })
+
     let placed = [
         [false, false, false, false, false],
         [false, false, false, false, false],
@@ -185,33 +214,7 @@ const board = (function() {
             }
             wonp.style.display= "block";
             wondiv.style.display= "flex";
-            restart.style.visibility = "visible"
-            restart.addEventListener("click", () => {
-                
-                flag = false;
-                turn = "x";
-                placed = [
-                    [false, false, false, false, false],
-                    [false, false, false, false, false],
-                    [false, false, false, false, false],
-                    [false, false, false, false, false],
-                    [false, false, false, false, false]];
-                piece = [
-                    [0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0]];
-                
-                for (let i = 0; i < 5; i++) {
-                    for (let j =0; j < 5; j++) {
-                        let spot = document.getElementById(i.toString() + j.toString());
-                        spot.textContent = "";
-                    }
-                }
-                wondiv.style.display = "none";
-                show();
-            })}
+        }
         }
 
     return {show}
