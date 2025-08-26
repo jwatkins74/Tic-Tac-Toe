@@ -4,6 +4,12 @@
     height: 80px;
     background-color: blueviolet;
     border: 3px solid black;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
 }
 #grid {
     display: grid;
@@ -11,4 +17,7 @@
     grid-template-rows: 83px 83px 83px 83px 83px;
     border: 3px solid black;
     width: fit-content;
+}
+#wonp{
+    display: none;
 }
