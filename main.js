@@ -55,6 +55,7 @@ const board = (function() {
     const show = () => {
         let curr = current();
         let spot;
+        let old;
         for (let i = 0; i < 5; i++) {
             for (let j =0; j < 5; j++) {
                 spot = document.getElementById(i.toString() + j.toString());
@@ -65,15 +66,44 @@ const board = (function() {
         if (curr.length == 1) {
             spot = document.getElementById("22");
             spot.style.visibility = "visible";
-            spot.addEventListener("click", () =>{draw("22")});
+            old = spot.textContent;
+            spot.addEventListener("click", () =>{
+                draw("22");
+                old = spot.textContent;
+            });
+
+            spot.addEventListener("mouseenter", (event) =>{
+                let str1 = "x" == turn ? "x": "o";
+                let this1 = document.getElementById(event.target.id);
+                if(this1.textContent == "")
+                    this1.textContent = str1});
+
+            spot.addEventListener("mouseleave", (event) =>{
+                let this1 = document.getElementById(event.target.id);
+                if (! placed[event.target.id[0]][event.target.id[1]])
+                this1.textContent = ""; 
+            });
             return;
         }
         for (let x = curr[0]; x <= curr[1]; x++) {
             for (let y =curr[2]; y <= curr[3]; y++) {
                 spot = document.getElementById(x.toString() + y.toString());
+                old = spot.textContent;
                 spot.addEventListener("click", () => {
                     draw(x.toString() + y.toString());
+                    old = spot.textContent;
                 })
+                
+                spot.addEventListener("mouseenter", (event) =>{
+                let str1 = "x" == turn ? "x":"o";
+                let this1 = document.getElementById(event.target.id);
+                if(this1.textContent == "")
+                    this1.textContent = str1});
+
+            spot.addEventListener("mouseleave", (event) =>{
+                let this1 = document.getElementById(event.target.id);
+                if (! placed[event.target.id[0]][event.target.id[1]])
+                this1.textContent = ""});
                 spot.style.visibility = "visible";
             }
         }
@@ -84,6 +114,9 @@ const board = (function() {
             return;
         }
         spot = document.getElementById(pos);
+        if (placed[pos[0][1]]) {
+            return;
+        }
         spot.innerHTML = turn;
         placed[pos[0]][pos[1]] = true;
         if (turn == "x") {
@@ -176,6 +209,7 @@ const board = (function() {
                         spot.textContent = "";
                     }
                 }
+                wondiv.style.display = "none";
                 show();
             })}
         }
