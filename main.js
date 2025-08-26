@@ -143,16 +143,43 @@ const board = (function() {
             console.log("win");
             flag = true;
             let wonp = document.getElementById("wonp");
+            let wondiv = document.getElementById("wondiv");
+            let restart = document.getElementById("restart");
             if (piece == "x") {
                 wonp.textContent = "Player 1 (X) Won!"
             } else {
                 wonp.textContent = "Player 2 (O) Won!"
             }
             wonp.style.display= "block";
-            
+            wondiv.style.display= "flex";
+            restart.style.visibility = "visible"
+            restart.addEventListener("click", () => {
+                
+                flag = false;
+                turn = "x";
+                placed = [
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false],
+                    [false, false, false, false, false]];
+                piece = [
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0]];
+                
+                for (let i = 0; i < 5; i++) {
+                    for (let j =0; j < 5; j++) {
+                        let spot = document.getElementById(i.toString() + j.toString());
+                        spot.textContent = "";
+                    }
+                }
+                show();
+            })}
         }
 
-    }
     return {show}
 })()
 board.show();
