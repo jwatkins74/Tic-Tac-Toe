@@ -1,3 +1,7 @@
+::selection {
+    background-color: transparent;
+    color: inherit;
+}
 body {
     background-color: salmon;
 }

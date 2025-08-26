@@ -117,10 +117,8 @@ const board = (function() {
         for (let x = curr[0]; x <= curr[1]; x++) {
             for (let y =curr[2]; y <= curr[3]; y++) {
                 spot = document.getElementById(x.toString() + y.toString());
-                old = spot.textContent;
                 spot.addEventListener("click", () => {
                     draw(x.toString() + y.toString());
-                    old = spot.textContent;
                 })
                 
                 spot.addEventListener("mouseenter", (event) =>{
@@ -143,7 +141,7 @@ const board = (function() {
             return;
         }
         spot = document.getElementById(pos);
-        if (placed[pos[0][1]]) {
+        if (placed[pos[0]][pos[1]]) {
             return;
         }
         spot.innerHTML = turn;
